@@ -20,17 +20,21 @@ jobs:
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.19.x'
+          flutter-version: '3.22.x'
           channel: 'stable'
 
-      - name: Disable Analytics
-        run: flutter config --no-analytics
+      - name: Force V2 Embedding Fix
+        run: |
+          mkdir -p android/app/src/main/kotlin/com/example/car_log_app
+          echo "package com.example.car_log_app" > android/app/src/main/kotlin/com/example/car_log_app/MainActivity.kt
+          echo "import io.flutter.embedding.android.FlutterActivity" >> android/app/src/main/kotlin/com/example/car_log_app/MainActivity.kt
+          echo "class MainActivity: FlutterActivity() {}" >> android/app/src/main/kotlin/com/example/car_log_app/MainActivity.kt
 
       - name: Install Dependencies
-        run: flutter pub get --no-example
+        run: flutter pub get
 
       - name: Build APK
-        run: flutter build apk --release --no-pub
+        run: flutter build apk --release
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
