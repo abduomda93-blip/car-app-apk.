@@ -2,6 +2,7 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:csv/csv.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:intl/intl.dart';
@@ -53,7 +54,7 @@ class _CarTrackerAppState extends State<CarTrackerApp> {
         brightness: Brightness.light,
         colorSchemeSeed: Colors.teal,
         scaffoldBackgroundColor: const Color(0xFFF7F9FC),
-        cardTheme: CardTheme(
+        cardTheme: CardThemeData(
           elevation: 2,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
         ),
@@ -63,7 +64,7 @@ class _CarTrackerAppState extends State<CarTrackerApp> {
         brightness: Brightness.dark,
         colorSchemeSeed: Colors.teal,
         scaffoldBackgroundColor: const Color(0xFF121212),
-        cardTheme: CardTheme(
+        cardTheme: CardThemeData(
           elevation: 2,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
         ),
