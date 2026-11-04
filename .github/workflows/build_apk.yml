@@ -22,18 +22,15 @@ jobs:
         with:
           channel: 'stable'
 
-      - name: Clean Environment & Fix V2
+      - name: Recreate Fresh Android Project
         run: |
-          rm -rf test
-          mkdir -p android/app/src/main/kotlin/com/example/car_log_app
-          cat << 'EOF' > android/app/src/main/kotlin/com/example/car_log_app/MainActivity.kt
-          package com.example.car_log_app
-
-          import io.flutter.embedding.android.FlutterActivity
-
-          class MainActivity: FlutterActivity() {
-          }
-          EOF
+          mkdir -p ../app_backup
+          cp -r lib ../app_backup/
+          cp pubspec.yaml ../app_backup/
+          rm -rf ./* ./.* 2>/dev/null || true
+          flutter create --org com.example --project-name car_log_app .
+          cp -r ../app_backup/lib ./
+          cp ../app_backup/pubspec.yaml ./
 
       - name: Install Dependencies
         run: flutter pub get
