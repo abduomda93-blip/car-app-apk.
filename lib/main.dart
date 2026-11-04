@@ -470,7 +470,7 @@ class _ReportsScreenState extends State<ReportsScreen> {
     for (var t in trips) {
       rows.add([t['id'], t['date'], t['plateNumber'], t['carModel'], t['driverName'], t['startMeter'], t['endMeter'], t['distance'], t['notes']]);
     }
-    String csvData = const ListToCsvConverter().convert(rows);
+    String csvData = ListToCsvConverter().convert(rows);
     final directory = await getTemporaryDirectory();
     final file = File('${directory.path}/report_${DateTime.now().millisecondsSinceEpoch}.csv');
     await file.writeAsString(csvData);
