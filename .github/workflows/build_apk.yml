@@ -22,10 +22,18 @@ jobs:
         with:
           channel: 'stable'
 
-      - name: Rebuild Clean V2 Android Project
+      - name: Clean Environment & Fix V2
         run: |
-          rm -rf android
-          flutter create --platforms=android --org com.example --project-name car_log_app .
+          rm -rf test
+          mkdir -p android/app/src/main/kotlin/com/example/car_log_app
+          cat << 'EOF' > android/app/src/main/kotlin/com/example/car_log_app/MainActivity.kt
+          package com.example.car_log_app
+
+          import io.flutter.embedding.android.FlutterActivity
+
+          class MainActivity: FlutterActivity() {
+          }
+          EOF
 
       - name: Install Dependencies
         run: flutter pub get
