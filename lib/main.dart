@@ -2,7 +2,6 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:csv/csv.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:intl/intl.dart';
@@ -10,7 +9,6 @@ import 'package:http/http.dart' as http;
 import 'package:csv/csv.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
-import 'package:file_picker/file_picker.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -450,9 +448,9 @@ class ReportsScreen extends StatefulWidget {
 class _ReportsScreenState extends State<ReportsScreen> {
   String _searchPlate = '';
 
-  List<Map<String, dynamic>> _getFilteredTrips() {
+  List> _getFilteredTrips() {
     final rawList = widget.tripBox.values.toList();
-    List<Map<String, dynamic>> trips = [];
+    List> trips = [];
     for (var item in rawList) {
       trips.add(Map<String, dynamic>.from(item));
     }
@@ -463,7 +461,7 @@ class _ReportsScreenState extends State<ReportsScreen> {
     }).toList();
   }
 
-  Future<void> _exportToCsv(List<Map<String, dynamic>> trips) async {
+  Future<void> _exportToCsv(List> trips) async {
     if (trips.isEmpty) return;
     List<List<dynamic>> rows = [
       ["معرف الرحلة", "التاريخ", "رقم اللوحة", "نوع السيارة", "السائق", "عداد الخروج", "عداد الرجوع", "المسافة", "ملاحظات"]
