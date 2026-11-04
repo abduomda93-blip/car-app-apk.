@@ -1,6 +1,7 @@
 name: car_log_app
-description: "تطبيق متكامل لتتبع سجل وحركة السيارات اليومية"
+description: "تطبيق سجل السيارات اليومي"
 publish_to: 'none'
+
 version: 1.0.0+1
 
 environment:
@@ -11,12 +12,8 @@ dependencies:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
-  intl: ^0.18.1
-  http: ^1.2.0
-  csv: ^6.0.0
-  path_provider: ^2.1.2
-  share_plus: ^9.0.0
-  file_picker: ^8.0.0
+  intl: ^0.19.0
+  file_picker: ^8.0.5
 
 dev_dependencies:
   flutter_test:
