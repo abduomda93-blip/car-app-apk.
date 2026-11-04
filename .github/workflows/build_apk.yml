@@ -22,7 +22,7 @@ jobs:
         with:
           channel: 'stable'
 
-      - name: Force Clean V2 Android Structure
+      - name: Rebuild Clean V2 Android Project
         run: |
           rm -rf android
           flutter create --platforms=android --org com.example --project-name car_log_app .
@@ -30,8 +30,8 @@ jobs:
       - name: Install Dependencies
         run: flutter pub get
 
-      - name: Build APK
-        run: flutter build apk --release --no-tree-shake-icons
+      - name: Build APK (Verbose Output)
+        run: flutter build apk --release --verbose --no-tree-shake-icons
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
